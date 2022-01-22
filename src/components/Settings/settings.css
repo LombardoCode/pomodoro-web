@@ -14,3 +14,10 @@
 	bottom: 0;
 	padding: 44px 0px;
 }
+
+.input-number {
+	padding: 12px;
+	margin: 5px 0px;
+	color: #000000;
+	border-radius: 6px;
+}

@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import "./Timer.css";
 
-const Timer = () => {
-	const [active, setActive] = useState(false);
+const Timer = ({
+	minutes,
+	active,
+	setActive,
+	leftDegrees,
+	setLeftDegrees,
+	rightDegrees,
+	setRightDegrees,
+}) => {
 	const [percentage, setPercentage] = useState(0);
-	const [leftDegrees, setLeftDegrees] = useState(180);
-	const [rightDegrees, setRightDegrees] = useState(180);
+
 	useEffect(() => {
 		let interval = null;
 		let firstHalfFinished = false;
 		let secondHalfFinished = false;
+		const seconds = minutes.pomodoroMinutes * 60;
+		const deegreesToTurn = 180 / (seconds / 2);
 
 		let leftPercentage = (50 / 180) * (leftDegrees - 180);
 		let rightPercentage = (50 / 180) * (rightDegrees - 180);
@@ -18,16 +26,16 @@ const Timer = () => {
 		if (active) {
 			if (leftDegrees >= 180 && leftDegrees < 360) {
 				interval = setInterval(() => {
-					setLeftDegrees((oldDegrees) => oldDegrees + 1);
-				}, 100);
+					setLeftDegrees((oldDegrees) => oldDegrees + deegreesToTurn);
+				}, 1000);
 			} else {
 				firstHalfFinished = true;
 			}
 
 			if (firstHalfFinished && rightDegrees >= 180 && rightDegrees < 361) {
 				interval = setInterval(() => {
-					setRightDegrees((oldDegrees) => oldDegrees + 1);
-				}, 100);
+					setRightDegrees((oldDegrees) => oldDegrees + deegreesToTurn);
+				}, 1000);
 			} else {
 				secondHalfFinished = true;
 			}
@@ -41,7 +49,9 @@ const Timer = () => {
 			}
 		}
 
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(interval);
+		};
 	}, [leftDegrees, rightDegrees, active]);
 
 	const firstHalfStyle = {
