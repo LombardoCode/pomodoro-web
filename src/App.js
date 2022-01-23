@@ -7,6 +7,7 @@ function App() {
 	const [active, setActive] = useState(false);
 	const [leftDegrees, setLeftDegrees] = useState(180);
 	const [rightDegrees, setRightDegrees] = useState(180);
+	const [secondsPast, setSecondsPast] = useState(0);
 	const [minutes, setMinutes] = useState({
 		pomodoroMinutes: 40,
 		breakMinutes: 15,
@@ -18,6 +19,10 @@ function App() {
 
 	const handleActive = (status) => {
 		setActive(!active);
+	};
+
+	const onSetSecondsPast = (seconds) => {
+		setSecondsPast(seconds);
 	};
 
 	const onSetLeftDegrees = (degrees) => {
@@ -32,6 +37,7 @@ function App() {
 		setActive(false);
 		setLeftDegrees(180);
 		setRightDegrees(180);
+		setSecondsPast(0);
 	};
 
 	return (
@@ -44,6 +50,8 @@ function App() {
 			<div className="container mx-auto my-10">
 				<h1 className="text-white text-center text-4xl">Pomodoro</h1>
 				<Timer
+					secondsPast={secondsPast}
+					setSecondsPast={onSetSecondsPast}
 					minutes={minutes}
 					active={active}
 					setActive={handleActive}
