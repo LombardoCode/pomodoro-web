@@ -4,6 +4,8 @@ import "./Timer.css";
 const Timer = ({
 	secondsPast,
 	setSecondsPast,
+	secondsLeft,
+	setSecondsLeft,
 	minutes,
 	active,
 	setActive,
@@ -13,7 +15,6 @@ const Timer = ({
 	setRightDegrees,
 }) => {
 	const [percentage, setPercentage] = useState(0);
-	const [timerDisplay, setTimerDisplay] = useState("00:00");
 
 	useEffect(() => {
 		let interval = null;
@@ -30,6 +31,7 @@ const Timer = ({
 				interval = setInterval(() => {
 					setLeftDegrees((oldDegrees) => oldDegrees + deegreesToTurn);
 					setSecondsPast((oldSeconds) => oldSeconds + 1);
+					setSecondsLeft((oldSeconds) => oldSeconds - 1);
 				}, 1000);
 			} else {
 				firstHalfFinished = true;
@@ -39,44 +41,48 @@ const Timer = ({
 				interval = setInterval(() => {
 					setRightDegrees((oldDegrees) => oldDegrees + deegreesToTurn);
 					setSecondsPast((oldSeconds) => oldSeconds + 1);
+					setSecondsLeft((oldSeconds) => oldSeconds - 1);
 				}, 1000);
 			} else {
 				secondHalfFinished = true;
 			}
 
 			if (firstHalfFinished && secondHalfFinished) {
+				setActive(false);
+
 				setLeftDegrees(180);
 				firstHalfFinished = false;
 
 				setRightDegrees(180);
 				secondHalfFinished = false;
 
-				setTimerDisplay("00:00");
 				setSecondsPast(0);
+				setSecondsLeft(minutes.pomodoroMinutes * 60 + 1);
+				console.log(minutes.pomodoroMinutes, minutes.pomodoroMinutes * 60);
 			}
-		}
-
-		const formatTo2DigitNumber = (number) => {
-			return number.toLocaleString("en-US", {
-				minimumIntegerDigits: 2,
-				useGrouping: false,
-			});
-		};
-
-		if (secondsPast < 60) {
-			setTimerDisplay(`00:${formatTo2DigitNumber(secondsPast)}`);
-		} else {
-			setTimerDisplay(
-				`${Math.floor(secondsPast / 60)}:${formatTo2DigitNumber(
-					secondsPast % 60
-				)}`
-			);
 		}
 
 		return () => {
 			clearInterval(interval);
 		};
-	}, [leftDegrees, rightDegrees, active, secondsPast]);
+	}, [leftDegrees, rightDegrees, active, secondsPast, secondsLeft]);
+
+	const formatTo2DigitNumber = (number) => {
+		return number.toLocaleString("en-US", {
+			minimumIntegerDigits: 2,
+			useGrouping: false,
+		});
+	};
+
+	const secondsToTimer = (seconds) => {
+		if (seconds < 60) {
+			return `00:${formatTo2DigitNumber(seconds)}`;
+		} else {
+			return `${Math.floor(seconds / 60)}:${formatTo2DigitNumber(
+				seconds % 60
+			)}`;
+		}
+	};
 
 	const firstHalfStyle = {
 		transform: `rotate(${leftDegrees}deg)`,
@@ -97,11 +103,13 @@ const Timer = ({
 					id="mini-circle"
 					className="flex justify-center items-center rounded-full w-24 h-24 bg-blue-900"
 				>
-					<span id="display" className="text-3xl">
-						<p>Left: {Math.round(leftDegrees)}</p>
-						<p>Right: {Math.round(rightDegrees)}</p>
-						<p className="text-center">{Math.round(percentage)}%</p>
-						<p className="text-center">{timerDisplay}</p>
+					<span id="display">
+						<p className="text-center text-5xl">
+							{secondsToTimer(secondsLeft)}
+						</p>
+						<p className="text-center text-xl">
+							{secondsToTimer(secondsPast)} ({Math.round(percentage)}%)
+						</p>
 					</span>
 				</div>
 				<div id="first-half" className="w-1/2 h-full overflow-hidden">

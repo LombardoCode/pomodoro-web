@@ -7,14 +7,16 @@ function App() {
 	const [active, setActive] = useState(false);
 	const [leftDegrees, setLeftDegrees] = useState(180);
 	const [rightDegrees, setRightDegrees] = useState(180);
-	const [secondsPast, setSecondsPast] = useState(0);
 	const [minutes, setMinutes] = useState({
 		pomodoroMinutes: 40,
 		breakMinutes: 15,
 	});
+	const [secondsPast, setSecondsPast] = useState(0);
+	const [secondsLeft, setSecondsLeft] = useState(minutes.pomodoroMinutes * 60);
 
 	const onMinutesInitializer = (minutes) => {
 		setMinutes(minutes);
+		setSecondsLeft(minutes.pomodoroMinutes * 60);
 	};
 
 	const handleActive = (status) => {
@@ -52,6 +54,8 @@ function App() {
 				<Timer
 					secondsPast={secondsPast}
 					setSecondsPast={onSetSecondsPast}
+					secondsLeft={secondsLeft}
+					setSecondsLeft={setSecondsLeft}
 					minutes={minutes}
 					active={active}
 					setActive={handleActive}

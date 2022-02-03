@@ -15,10 +15,11 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 		if (Number(e.target.value) >= 0) {
 			setFormValues({
 				...formValues,
-				[e.target.name]: e.target.value,
+				[e.target.name]: Number(e.target.value),
 			});
 			console.log("minutes changed!");
-			resetTimer(true);
+			resetTimer();
+			minutesInitializer(formValues);
 		}
 	};
 
@@ -47,7 +48,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 									id="pomodoro-minutes"
 									name="pomodoroMinutes"
 									type="number"
-									value={formValues.pomodoroMinutes}
+									defaultValue={formValues.pomodoroMinutes}
 									onChange={changeMinutes}
 									className="input-number"
 								/>
@@ -58,7 +59,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 									id="break-minutes"
 									name="breakMinutes"
 									type="number"
-									value={formValues.breakMinutes}
+									defaultValue={formValues.breakMinutes}
 									onChange={changeMinutes}
 									className="input-number"
 								/>
