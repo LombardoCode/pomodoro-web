@@ -12,7 +12,8 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 
 	const changeMinutes = (e) => {
 		e.preventDefault();
-		if (Number(e.target.value) >= 0) {
+		// 1 minute to 1 day:
+		if (Number(e.target.value) >= 1 && Number(e.target.value) <= 1440) {
 			setFormValues({
 				...formValues,
 				[e.target.name]: Number(e.target.value),
@@ -32,7 +33,6 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 			>
 				<i className="fas fa-cog"></i>
 			</button>
-			<h1 className="text-white">{JSON.stringify(formValues)}</h1>
 			{displaySettings && (
 				<div id="settings-tab" className="bg-blue-900 text-white font-4xl py-5">
 					<div className="container mx-auto">
@@ -48,7 +48,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 									id="pomodoro-minutes"
 									name="pomodoroMinutes"
 									type="number"
-									defaultValue={formValues.pomodoroMinutes}
+									value={formValues.pomodoroMinutes}
 									onChange={changeMinutes}
 									className="input-number"
 								/>
@@ -59,7 +59,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 									id="break-minutes"
 									name="breakMinutes"
 									type="number"
-									defaultValue={formValues.breakMinutes}
+									value={formValues.breakMinutes}
 									onChange={changeMinutes}
 									className="input-number"
 								/>

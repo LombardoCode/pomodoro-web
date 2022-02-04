@@ -1,15 +1,17 @@
 import "./index.css";
+import Navbar from "./components/Navbar/Navbar";
 import Timer from "./components/Timer/Timer";
 import Settings from "./components/Settings/Settings";
 import { useState } from "react";
 
 function App() {
 	const [active, setActive] = useState(false);
+	const [pomodoroMode, setPomodoroMode] = useState(true);
 	const [leftDegrees, setLeftDegrees] = useState(180);
 	const [rightDegrees, setRightDegrees] = useState(180);
 	const [minutes, setMinutes] = useState({
-		pomodoroMinutes: 40,
-		breakMinutes: 15,
+		pomodoroMinutes: 1,
+		breakMinutes: 2,
 	});
 	const [secondsPast, setSecondsPast] = useState(0);
 	const [secondsLeft, setSecondsLeft] = useState(minutes.pomodoroMinutes * 60);
@@ -40,10 +42,18 @@ function App() {
 		setLeftDegrees(180);
 		setRightDegrees(180);
 		setSecondsPast(0);
+		setSecondsLeft(
+			pomodoroMode ? minutes.pomodoroMinutes * 60 : minutes.breakMinutes * 60
+		);
+	};
+
+	const onSetPomodoroMode = (mode) => {
+		setPomodoroMode(!mode);
 	};
 
 	return (
 		<div>
+			<Navbar />
 			<Settings
 				resetTimer={onResetTimer}
 				minutes={minutes}
@@ -52,6 +62,8 @@ function App() {
 			<div className="container mx-auto my-10">
 				<h1 className="text-white text-center text-4xl">Pomodoro</h1>
 				<Timer
+					pomodoroMode={pomodoroMode}
+					setPomodoroMode={onSetPomodoroMode}
 					secondsPast={secondsPast}
 					setSecondsPast={onSetSecondsPast}
 					secondsLeft={secondsLeft}
@@ -63,6 +75,7 @@ function App() {
 					setLeftDegrees={onSetLeftDegrees}
 					rightDegrees={rightDegrees}
 					setRightDegrees={onSetRightDegrees}
+					resetTimer={onResetTimer}
 				/>
 			</div>
 		</div>
