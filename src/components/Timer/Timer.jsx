@@ -96,7 +96,6 @@ const Timer = ({
 
 	const onMinutesInitializer = (minutes) => {
 		setMinutes(minutes);
-		setSecondsLeft(minutes.pomodoroMinutes * 60);
 	};
 
 	const formatTo2DigitNumber = (number) => {
