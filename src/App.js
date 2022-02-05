@@ -1,8 +1,10 @@
 import "./index.css";
+import About from "./components/pages/About/About";
 import Navbar from "./components/Navbar/Navbar";
 import Timer from "./components/Timer/Timer";
 import Settings from "./components/Settings/Settings";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
 	const [active, setActive] = useState(false);
@@ -52,33 +54,43 @@ function App() {
 	};
 
 	return (
-		<div>
+		<BrowserRouter>
 			<Navbar />
-			<Settings
-				resetTimer={onResetTimer}
-				minutes={minutes}
-				minutesInitializer={onMinutesInitializer}
-			/>
-			<div className="container mx-auto my-10">
-				<h1 className="text-white text-center text-4xl">Pomodoro</h1>
-				<Timer
-					pomodoroMode={pomodoroMode}
-					setPomodoroMode={onSetPomodoroMode}
-					secondsPast={secondsPast}
-					setSecondsPast={onSetSecondsPast}
-					secondsLeft={secondsLeft}
-					setSecondsLeft={setSecondsLeft}
-					minutes={minutes}
-					active={active}
-					setActive={handleActive}
-					leftDegrees={leftDegrees}
-					setLeftDegrees={onSetLeftDegrees}
-					rightDegrees={rightDegrees}
-					setRightDegrees={onSetRightDegrees}
-					resetTimer={onResetTimer}
-				/>
-			</div>
-		</div>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<div>
+							<Settings
+								resetTimer={onResetTimer}
+								minutes={minutes}
+								minutesInitializer={onMinutesInitializer}
+							/>
+							<div className="container mx-auto my-10">
+								<h1 className="text-white text-center text-4xl">Pomodoro</h1>
+								<Timer
+									pomodoroMode={pomodoroMode}
+									setPomodoroMode={onSetPomodoroMode}
+									secondsPast={secondsPast}
+									setSecondsPast={onSetSecondsPast}
+									secondsLeft={secondsLeft}
+									setSecondsLeft={setSecondsLeft}
+									minutes={minutes}
+									active={active}
+									setActive={handleActive}
+									leftDegrees={leftDegrees}
+									setLeftDegrees={onSetLeftDegrees}
+									rightDegrees={rightDegrees}
+									setRightDegrees={onSetRightDegrees}
+									resetTimer={onResetTimer}
+								/>
+							</div>
+						</div>
+					}
+				></Route>
+				<Route path="/about" element={<About />}></Route>
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

@@ -1,33 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const links = [
 	{
-		text: "Link 1",
-		route: "/link1",
+		text: "Pomodoro",
+		route: "/",
 	},
 	{
-		text: "Link 2",
-		route: "/link2",
-	},
-	{
-		text: "Link 3",
-		route: "/link3",
+		text: "About",
+		route: "/about",
 	},
 ];
 
 const LinkClickable = ({ text, route }) => {
 	return (
-		<div className="text-white">
-			<p>{text}</p>
-			<p>{route}</p>
-		</div>
+		<Link
+			to={route}
+			className="text-white py-2 px-5 rounded-full ml-4 hover:bg-white hover:text-black transition-all border-2 border-white"
+		>
+			{text}
+		</Link>
 	);
 };
 
 const Navbar = () => {
 	return (
 		<div>
-			<div className="container mx-auto flex justify-end py-1">
+			<div className="container mx-auto flex justify-end py-3">
 				<nav>
 					<ul className="flex">
 						{links.map((l, index) => (
