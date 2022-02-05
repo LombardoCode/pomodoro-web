@@ -14,14 +14,14 @@ const About = () => {
 						href="https://www.linkedin.com/in/lombardo-m-bba399218/"
 						className="text-2xl border-2 border-white px-3 py-6 md:py-2 rounded-md transition-all duration-200 hover:bg-white hover:text-white mb-5 md:mb-0 md:mr-5 text-center"
 					>
-						<i className="fab fa-linkedin"></i>
+						<i className="fab fa-linkedin mr-2"></i>
 						Linked in
 					</a>
 					<a
 						href="https://github.com/LombardoCode/MusicNow"
 						className="text-2xl border-2 border-white px-3 py-6 md:py-2 rounded-md transition-all duration-200 hover:bg-white hover:text-white mb-5 md:mb-0 text-center"
 					>
-						<i className="fab fa-github"></i>
+						<i className="fab fa-github mr-2"></i>
 						Github
 					</a>
 				</div>
