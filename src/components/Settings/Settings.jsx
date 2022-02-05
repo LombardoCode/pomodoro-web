@@ -28,7 +28,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 		<div className="relative">
 			<button
 				id="settings-button"
-				className="text-white border-2 border-white rounded-xl font-4xl hover:bg-white hover:text-black transition-all duration-200"
+				className="w-20 h-20 text-white bg-gray-700 rounded-full font-4xl hover:bg-gray-800 transition-all duration-200"
 				onClick={() => setDisplaySettings(!displaySettings)}
 			>
 				<i className="fas fa-cog"></i>

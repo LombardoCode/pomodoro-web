@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Timer.css";
+import Settings from "../Settings/Settings";
 
 const Timer = ({
 	pomodoroMode,
@@ -9,6 +10,7 @@ const Timer = ({
 	secondsLeft,
 	setSecondsLeft,
 	minutes,
+	setMinutes,
 	active,
 	setActive,
 	leftDegrees,
@@ -92,6 +94,11 @@ const Timer = ({
 		resetTimer,
 	]);
 
+	const onMinutesInitializer = (minutes) => {
+		setMinutes(minutes);
+		setSecondsLeft(minutes.pomodoroMinutes * 60);
+	};
+
 	const formatTo2DigitNumber = (number) => {
 		return number.toLocaleString("en-US", {
 			minimumIntegerDigits: 2,
@@ -173,6 +180,13 @@ const Timer = ({
 						{pomodoroMode && <i className="fas fa-coffee"></i>}
 						{!pomodoroMode && <i className="fas fa-brain"></i>}
 					</span>
+				</div>
+				<div className="absolute -right-20 bottom-20 w-20 h-20">
+					<Settings
+						resetTimer={resetTimer}
+						minutes={minutes}
+						minutesInitializer={onMinutesInitializer}
+					/>
 				</div>
 			</div>
 		</div>

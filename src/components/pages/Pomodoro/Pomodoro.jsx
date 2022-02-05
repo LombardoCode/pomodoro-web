@@ -14,13 +14,12 @@ const Pomodoro = () => {
 	const [secondsPast, setSecondsPast] = useState(0);
 	const [secondsLeft, setSecondsLeft] = useState(minutes.pomodoroMinutes * 60);
 
-	const onMinutesInitializer = (minutes) => {
-		setMinutes(minutes);
-		setSecondsLeft(minutes.pomodoroMinutes * 60);
-	};
-
 	const handleActive = (status) => {
 		setActive(!active);
+	};
+
+	const onSetMinutes = (minutes) => {
+		setMinutes(minutes);
 	};
 
 	const onSetSecondsPast = (seconds) => {
@@ -51,13 +50,10 @@ const Pomodoro = () => {
 
 	return (
 		<div>
-			<Settings
-				resetTimer={onResetTimer}
-				minutes={minutes}
-				minutesInitializer={onMinutesInitializer}
-			/>
 			<div className="container mx-auto my-10">
-				<h1 className="text-white text-center text-4xl">Pomodoro</h1>
+				<h1 className="text-white text-center text-4xl">
+					{pomodoroMode ? "Pomodoro" : "Break time"}
+				</h1>
 				<Timer
 					pomodoroMode={pomodoroMode}
 					setPomodoroMode={onSetPomodoroMode}
@@ -66,6 +62,7 @@ const Pomodoro = () => {
 					secondsLeft={secondsLeft}
 					setSecondsLeft={setSecondsLeft}
 					minutes={minutes}
+					setMinutes={onSetMinutes}
 					active={active}
 					setActive={handleActive}
 					leftDegrees={leftDegrees}
