@@ -89,6 +89,7 @@ const Timer = ({
 		secondsPast,
 		secondsLeft,
 		pomodoroMode,
+		resetTimer,
 	]);
 
 	const formatTo2DigitNumber = (number) => {

@@ -19,8 +19,8 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 				[e.target.name]: Number(e.target.value),
 			});
 			console.log("minutes changed!");
-			resetTimer();
 			minutesInitializer(formValues);
+			resetTimer();
 		}
 	};
 
