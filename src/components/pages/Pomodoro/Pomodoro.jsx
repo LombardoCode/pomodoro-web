@@ -8,8 +8,8 @@ const Pomodoro = () => {
 	const [leftDegrees, setLeftDegrees] = useState(180);
 	const [rightDegrees, setRightDegrees] = useState(180);
 	const [minutes, setMinutes] = useState({
-		pomodoroMinutes: 1,
-		breakMinutes: 2,
+		pomodoroMinutes: 45,
+		breakMinutes: 15,
 	});
 	const [secondsPast, setSecondsPast] = useState(0);
 	const [secondsLeft, setSecondsLeft] = useState(minutes.pomodoroMinutes * 60);

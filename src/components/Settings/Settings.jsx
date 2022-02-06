@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./settings.css";
+import Modal from "../Modal/Modal";
 
 const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
-	const settingsForm = useRef(null);
-	const [displaySettings, setDisplaySettings] = useState(true);
+	const [displaySettings, setDisplaySettings] = useState(false);
 	const [formValues, setFormValues] = useState(minutes);
 
 	useEffect(() => {
@@ -24,6 +24,10 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 		}
 	};
 
+	const onSetShowModal = (value) => {
+		setDisplaySettings(value);
+	};
+
 	return (
 		<div className="relative">
 			<button
@@ -34,39 +38,37 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 				<i className="fas fa-cog"></i>
 			</button>
 			{displaySettings && (
-				<div id="settings-tab" className="bg-blue-900 text-white font-4xl py-5">
-					<div className="container mx-auto">
-						<h1 className="text-2xl font-bold mb-2">Settings</h1>
-						<form
-							id="timer-settings"
-							className="flex justify-between"
-							ref={settingsForm}
-						>
-							<div id="pomodoro-timer-settings">
-								<p>Pomodoro time (minutes)</p>
-								<input
-									id="pomodoro-minutes"
-									name="pomodoroMinutes"
-									type="number"
-									value={formValues.pomodoroMinutes}
-									onChange={changeMinutes}
-									className="input-number"
-								/>
-							</div>
-							<div id="break-timer-settings">
-								<p>Break time (minutes)</p>
-								<input
-									id="break-minutes"
-									name="breakMinutes"
-									type="number"
-									value={formValues.breakMinutes}
-									onChange={changeMinutes}
-									className="input-number"
-								/>
-							</div>
-						</form>
+				<Modal setShowModal={onSetShowModal}>
+					<div id="settings-tab" className="text-black font-4xl py-5">
+						<div className="container mx-auto">
+							<h1 className="text-2xl font-bold mb-2">Settings</h1>
+							<form id="timer-settings" className="flex flex-col">
+								<div id="pomodoro-timer-settings">
+									<p>Pomodoro time (minutes)</p>
+									<input
+										id="pomodoro-minutes"
+										name="pomodoroMinutes"
+										type="number"
+										value={formValues.pomodoroMinutes}
+										onChange={changeMinutes}
+										className="w-full text-black my-2 p-3 rounded-xl border-2 border-blue-600"
+									/>
+								</div>
+								<div id="break-timer-settings">
+									<p>Break time (minutes)</p>
+									<input
+										id="break-minutes"
+										name="breakMinutes"
+										type="number"
+										value={formValues.breakMinutes}
+										onChange={changeMinutes}
+										className="w-full text-black my-2 p-3 rounded-xl border-2 border-blue-600"
+									/>
+								</div>
+							</form>
+						</div>
 					</div>
-				</div>
+				</Modal>
 			)}
 		</div>
 	);
