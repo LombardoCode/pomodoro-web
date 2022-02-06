@@ -20,7 +20,7 @@ const About = () => {
 						Linked in
 					</a>
 					<a
-						href="https://github.com/LombardoCode/MusicNow"
+						href="https://github.com/LombardoCode/pomodoro-web"
 						className="text-2xl border-2 border-white px-3 py-6 md:py-2 rounded-md transition-all duration-200 hover:bg-white hover:text-white mb-5 md:mb-0 text-center"
 					>
 						<i className="fab fa-github mr-2"></i>
