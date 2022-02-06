@@ -106,12 +106,18 @@ const Timer = ({
 	};
 
 	const secondsToTimer = (seconds) => {
-		if (seconds < 60) {
-			return `00:${formatTo2DigitNumber(seconds)}`;
+		let h = Math.floor(seconds / 3600);
+		let m = Math.floor((seconds - h * 3600) / 60);
+		let s = seconds - h * 3600 - m * 60;
+
+		h = formatTo2DigitNumber(h);
+		m = formatTo2DigitNumber(m);
+		s = formatTo2DigitNumber(s);
+
+		if (seconds < 3600) {
+			return `${m}:${s}`;
 		} else {
-			return `${Math.floor(seconds / 60)}:${formatTo2DigitNumber(
-				seconds % 60
-			)}`;
+			return `${h}:${m}:${s}`;
 		}
 	};
 
