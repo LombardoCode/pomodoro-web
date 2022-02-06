@@ -133,7 +133,7 @@ const Timer = ({
 			<div id="timer-container" className="relative">
 				<div
 					id="circle"
-					className={`relative flex flex-row-reverse text-white ${
+					className={`fnt_archivo relative flex flex-row-reverse text-white ${
 						pomodoroMode ? "bg-blue-900" : "bg-pink-900"
 					} transition-all w-64 h-64 sm:w-96 sm:h-96 my-5 rounded-full overflow-hidden cursor-pointer`}
 					onClick={() => setActive(!active)}

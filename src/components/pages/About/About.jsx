@@ -1,7 +1,9 @@
+import "./about.css";
+
 const About = () => {
 	return (
 		<div>
-			<div className="container mx-auto px-4 text-white fnt-quicksand my-6">
+			<div className="container mx-auto px-4 text-white fnt_quicksand my-6">
 				<p className="text-center text-2xl md:text-3xl mb-4">
 					This project has been done by:
 				</p>

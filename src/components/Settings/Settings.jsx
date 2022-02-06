@@ -35,7 +35,7 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 				className="w-20 h-20 text-white bg-gray-700 rounded-full font-4xl hover:bg-gray-800 transition-all duration-200"
 				onClick={() => setDisplaySettings(!displaySettings)}
 			>
-				<i className="fas fa-cog"></i>
+				<i className="fas fa-cog text-3xl"></i>
 			</button>
 			{displaySettings && (
 				<Modal setShowModal={onSetShowModal}>

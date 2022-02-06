@@ -1,6 +1,6 @@
 import Timer from "../../Timer/Timer";
-import Settings from "../../Settings/Settings";
 import { useState } from "react";
+import "./pomodoro.css";
 
 const Pomodoro = () => {
 	const [active, setActive] = useState(false);
@@ -51,7 +51,7 @@ const Pomodoro = () => {
 	return (
 		<div>
 			<div className="container mx-auto my-10">
-				<h1 className="text-white text-center text-4xl">
+				<h1 className="text-white text-center text-5xl fnt_dosis">
 					{pomodoroMode ? "Pomodoro" : "Break time"}
 				</h1>
 				<Timer
