@@ -18,7 +18,6 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 				...formValues,
 				[e.target.name]: Number(e.target.value),
 			});
-			console.log("minutes changed!");
 			minutesInitializer(formValues);
 			resetTimer();
 		}
@@ -32,10 +31,10 @@ const Settings = ({ resetTimer, minutesInitializer, minutes }) => {
 		<div className="relative">
 			<button
 				id="settings-button"
-				className="w-20 h-20 text-white bg-gray-700 rounded-full font-4xl hover:bg-gray-800 transition-all duration-200"
+				className="flex justify-center items-center w-14 h-14 sm:w-20 sm:h-20 text-white bg-gray-700 rounded-full font-4xl hover:bg-gray-800 transition-all duration-200"
 				onClick={() => setDisplaySettings(!displaySettings)}
 			>
-				<i className="fas fa-cog text-3xl"></i>
+				<i className="fas fa-cog text-xl sm:text-3xl"></i>
 			</button>
 			{displaySettings && (
 				<Modal setShowModal={onSetShowModal}>

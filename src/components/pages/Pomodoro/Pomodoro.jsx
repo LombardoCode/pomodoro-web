@@ -51,8 +51,8 @@ const Pomodoro = () => {
 	return (
 		<div>
 			<div className="container mx-auto my-10">
-				<h1 className="text-white text-center text-5xl fnt_dosis">
-					{pomodoroMode ? "Pomodoro" : "Break time"}
+				<h1 className="text-white text-center text-3xl sm:text-5xl fnt_dosis">
+					{pomodoroMode ? "Pomodoro time" : "Break time"}
 				</h1>
 				<Timer
 					pomodoroMode={pomodoroMode}

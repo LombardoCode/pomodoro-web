@@ -151,7 +151,7 @@ const Timer = ({
 						}`}
 					>
 						<span id="display">
-							<p className="text-center text-5xl">
+							<p className="text-center text-4xl sm:text-5xl">
 								{secondsToTimer(secondsLeft)}
 							</p>
 							<p className="text-center text-xl">
@@ -174,19 +174,19 @@ const Timer = ({
 				</div>
 				<div
 					id="switcher"
-					className={`absolute -right-4 bottom-0 w-20 h-20 ${
+					className={`absolute -right-4 bottom-0 w-14 h-14 sm:w-20 sm:h-20 ${
 						pomodoroMode
 							? "bg-pink-600 hover:bg-pink-700"
 							: "bg-blue-600 hover:bg-blue-700"
 					} transition-all z-10 rounded-full flex justify-center items-center cursor-pointer`}
 					onClick={() => onChangeMode()}
 				>
-					<span className="text-3xl text-white">
+					<span className="text-lg sm:text-3xl text-white">
 						{pomodoroMode && <i className="fas fa-coffee"></i>}
 						{!pomodoroMode && <i className="fas fa-brain"></i>}
 					</span>
 				</div>
-				<div className="absolute -right-20 bottom-20 w-20 h-20">
+				<div className="absolute -right-16 bottom-8 sm:-right-20 sm:bottom-20 w-20 h-20">
 					<Settings
 						resetTimer={resetTimer}
 						minutes={minutes}
